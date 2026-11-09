@@ -1,60 +1,66 @@
-# Librosfront
+# Librería Online – Frontend Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.29.
+Aplicación web en Angular para gestionar los libros de una biblioteca. Consume el
+microservicio Spring Boot de la Semana 1 (CRUD sobre Oracle).
 
-## Development server
+Microservicio: https://github.com/giovsalas-cell/Fulls-Stack-III-Libros
 
-To start a local development server, run:
+## Cómo ejecutar
 
-```bash
+1. Levantar el microservicio (puerto 8080).
+2. En esta carpeta:
+
+```
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+3. Abrir http://localhost:4200
 
-## Code scaffolding
+## Operaciones del CRUD
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Operación        | Método | Endpoint     | Dónde se usa                   |
+| ---------------- | ------ | ------------ | ------------------------------ |
+| Listar libros    | GET    | /libros      | Lista principal                |
+| Obtener un libro | GET    | /libros/{id} | Formulario en modo edición     |
+| Agregar libro    | POST   | /libros      | Formulario de nuevo libro      |
+| Actualizar libro | PUT    | /libros/{id} | Formulario en modo edición     |
+| Eliminar libro   | DELETE | /libros/{id} | Botón Eliminar de cada tarjeta |
 
-```bash
-ng generate component component-name
+Atributos del libro: `id`, `titulo`, `autor`, `anioPublicacion`, `genero`.
+
+## Arquetipo y patrones de diseño
+
+**Arquetipo: MVC (Modelo - Vista - Controlador)**
+
+| Capa        | Archivos                                             |
+| ----------- | ---------------------------------------------------- |
+| Modelo      | `models/libro.model.ts`, `services/libro.service.ts` |
+| Vista       | `*.component.html` y `*.component.css`               |
+| Controlador | `*.component.ts` (lista y formulario)                |
+
+**Patrones de diseño**
+
+| Patrón     | Dónde se aplica                                                            |
+| ---------- | -------------------------------------------------------------------------- |
+| Observador | El servicio devuelve `Observable` y los componentes usan `subscribe()`     |
+| Singleton  | `LibroService` con `providedIn: 'root'`: una sola instancia en toda la app |
+| Decorator  | `@Component` y `@Injectable` agregan metadatos a las clases                |
+
+## Estructura
+
+```
+src/app/
+├── models/        libro.model.ts
+├── services/      libro.service.ts
+├── components/
+│   ├── libro-lista/
+│   └── libro-form/
+├── app.routes.ts
+└── app.config.ts
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Nota sobre CORS
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-"# fulls-stack-III-Front-Libros" 
+El microservicio habilita el origen `http://localhost:4200` con `@CrossOrigin`
+en `LibroController`, porque frontend y backend corren en puertos distintos.
