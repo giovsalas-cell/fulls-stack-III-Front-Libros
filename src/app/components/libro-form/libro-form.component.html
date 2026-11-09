@@ -1,0 +1,28 @@
+<section class="caja">
+  <h2>{{ idEdicion !== null ? 'Editar libro' : 'Agregar libro' }}</h2>
+
+  <form (ngSubmit)="guardar()" #f="ngForm">
+    <label for="titulo">Título</label>
+    <input id="titulo" name="titulo" [(ngModel)]="libro.titulo" required />
+
+    <label for="autor">Autor</label>
+    <input id="autor" name="autor" [(ngModel)]="libro.autor" required />
+
+    <label for="anio">Año de publicación</label>
+    <input
+      id="anio"
+      name="anioPublicacion"
+      type="number"
+      [(ngModel)]="libro.anioPublicacion"
+      required
+    />
+
+    <label for="genero">Género</label>
+    <input id="genero" name="genero" [(ngModel)]="libro.genero" required />
+
+    <div class="acciones">
+      <button type="submit" class="btn-guardar" [disabled]="f.invalid">Guardar</button>
+      <button type="button" class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</section>

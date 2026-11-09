@@ -1,0 +1,49 @@
+.caja {
+  background: white;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h2 {
+  margin-top: 0;
+}
+label {
+  display: block;
+  margin: 12px 0 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px;
+  border: 1px solid #a6a6a6;
+  border-radius: 4px;
+  font-size: 15px;
+}
+.acciones {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.btn-guardar {
+  background: #ffd814;
+  border: 1px solid #fcd200;
+  border-radius: 20px;
+  padding: 9px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-guardar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-cancelar {
+  background: white;
+  border: 1px solid #d5d9d9;
+  border-radius: 20px;
+  padding: 9px 20px;
+  cursor: pointer;
+}
